@@ -38,7 +38,7 @@ function statement(invoice, plays) {
   }).format;
 
   for (let perf of invoice[0].performances) {
-    let thisAmount = amountFor(perf, playFor(perf));
+    let thisAmount = amountFor(perf);
     volumeCredits += Math.max(perf.audience - 30, 0);
     if ("comedy" === playFor(perf).type)
       volumeCredits += Math.floor(perf.audience / 5);
