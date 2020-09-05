@@ -28,13 +28,14 @@ const invoices = [
 
 // 공연료 청구서를 출력하는 함수
 function statement(invoice, plays) {
-  let totalAmount = 0;
   let result = `청구 내역 (고객명: ${invoice[0].customer})\n`;
   for (let perf of invoice[0].performances) {
     result += `${playFor(perf).name}: ${usd(amountFor(perf))} (${
       perf.audience
     }석)\n`;
   }
+
+  let totalAmount = 0;
   for (let perf of invoice[0].performances) {
     totalAmount += amountFor(perf);
   }
