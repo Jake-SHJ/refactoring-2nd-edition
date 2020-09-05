@@ -34,9 +34,11 @@ function statement(invoice, plays) {
     result += `${playFor(perf).name}: ${usd(amountFor(perf))} (${
       perf.audience
     }석)\n`;
+  }
+  for (let perf of invoice[0].performances) {
     totalAmount += amountFor(perf);
   }
-  // 값 누적 로직을 별도 for 문으로 분리 (반복문 쪼개기)
+
   result += `총액: ${usd(totalAmount)}\n`;
   result += `적립 포인트: ${totalVolumeCredits()}점\n`;
   return result;
@@ -97,5 +99,8 @@ function totalVolumeCredits() {
   }
   return volumeCredits;
 }
+
+// totalAmount도 추출, 같은 이름의 변수가 있으므로 임의의 함수 이름 부여
+function appleSauce() {}
 
 console.log(statement(invoices, plays));
