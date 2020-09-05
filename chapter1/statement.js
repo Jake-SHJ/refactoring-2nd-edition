@@ -78,11 +78,12 @@ function playFor(aPerformance) {
   return plays[aPerformance.playID];
 }
 
-function volumeCreditsFor(perf) {
+// statement 함수 내부에 있던 volumeCredit 관련 로직을 별개의 함수로 추출 (함수 추출하기)
+function volumeCreditsFor(aPerformance) {
   let volumeCredits = 0;
-  volumeCredits += Math.max(perf.audience - 30, 0);
-  if ("comedy" === playFor(perf).type)
-    volumeCredits += Math.floor(perf.audience / 5);
+  volumeCredits += Math.max(aPerformance.audience - 30, 0);
+  if ("comedy" === playFor(aPerformance).type)
+    volumeCredits += Math.floor(aPerformance.audience / 5);
   return volumeCredits;
 }
 
