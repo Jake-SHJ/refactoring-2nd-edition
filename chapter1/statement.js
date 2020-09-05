@@ -38,15 +38,14 @@ function statement(invoice, plays) {
   }).format;
 
   for (let perf of invoice[0].performances) {
-    let thisAmount = amountFor(perf);
     volumeCredits += Math.max(perf.audience - 30, 0);
     if ("comedy" === playFor(perf).type)
       volumeCredits += Math.floor(perf.audience / 5);
 
-    result += `${playFor(perf).name}: ${format(thisAmount / 100)} (${
+    result += `${playFor(perf).name}: ${format(amountFor(perf) / 100)} (${
       perf.audience
     }석)\n`;
-    totalAmount += thisAmount;
+    totalAmount += amountFor(perf);
   }
   result += `총액: ${format(totalAmount / 100)}\n`;
   result += `적립 포인트: ${volumeCredits}점\n`;
