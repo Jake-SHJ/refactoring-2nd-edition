@@ -38,10 +38,7 @@ function statement(invoice, plays) {
   }).format;
 
   for (let perf of invoice[0].performances) {
-    volumeCredits += Math.max(perf.audience - 30, 0);
-    if ("comedy" === playFor(perf).type)
-      volumeCredits += Math.floor(perf.audience / 5);
-
+    volumeCredits += volumeCreditsFor(perf);
     result += `${playFor(perf).name}: ${format(amountFor(perf) / 100)} (${
       perf.audience
     }석)\n`;
@@ -79,6 +76,14 @@ function amountFor(aPerformance) {
 // play 변수를 제거한다 (임시 변수를 질의 함수로 바꾸기)
 function playFor(aPerformance) {
   return plays[aPerformance.playID];
+}
+
+function volumeCreditsFor(perf) {
+  let volumeCredits = 0;
+  volumeCredits += Math.max(perf.audience - 30, 0);
+  if ("comedy" === playFor(perf).type)
+    volumeCredits += Math.floor(perf.audience / 5);
+  return volumeCredits;
 }
 
 console.log(statement(invoices, plays));
