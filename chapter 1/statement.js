@@ -30,16 +30,14 @@ const invoices = [
 function statement(invoice, plays) {
   let totalAmount = 0;
   let volumeCredits = 0;
-  let result = `청구 내역 (고객명: ${invoice.customer})\n`;
+  let result = `청구 내역 (고객명: ${invoice[0].customer})\n`;
   const format = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
     minimumFractionDigits: 2,
   }).format;
 
-  console.log(invoice.performances);
-
-  for (let perf of invoice.performances) {
+  for (let perf of invoice[0].performances) {
     const play = plays[perf.playID];
     let thisAmount = 0;
 
