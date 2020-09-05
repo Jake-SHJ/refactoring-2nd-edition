@@ -88,20 +88,20 @@ function usd(aNumber) {
 
 // volumeCredits 값 누적 코드를 함수로 추출
 function totalVolumeCredits() {
-  let volumeCredits = 0;
+  let result = 0;
   for (let perf of invoices[0].performances) {
-    volumeCredits += volumeCreditsFor(perf);
+    result += volumeCreditsFor(perf);
   }
-  return volumeCredits;
+  return result;
 }
 
 // totalAmount도 추출, 같은 이름의 변수가 있으므로 임의의 함수 이름 부여
 function totalAmount() {
-  let totalAmount = 0;
+  let result = 0;
   for (let perf of invoices[0].performances) {
-    totalAmount += amountFor(perf);
+    result += amountFor(perf);
   }
-  return totalAmount;
+  return result;
 }
 
 console.log(statement(invoices, plays));
