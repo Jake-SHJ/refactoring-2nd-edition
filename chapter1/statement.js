@@ -38,7 +38,7 @@ function statement(invoice, plays) {
   }).format;
 
   for (let perf of invoice[0].performances) {
-    const play = plays[perf.playID];
+    const play = playFor(perf);
     let thisAmount = amountFor(perf, play);
     volumeCredits += Math.max(perf.audience - 30, 0);
     if ("comedy" === play.type) volumeCredits += Math.floor(perf.audience / 5);
@@ -75,6 +75,11 @@ function amountFor(aPerformance, play) {
       throw new Error(`알 수 없는 장르: ${play.type}`);
   }
   return result;
+}
+
+// play 변수를 제거한다 (임시 변수를 질의 함수로 바꾸기)
+function playFor(aPerformance) {
+  return plays[aPerformance.playID];
 }
 
 console.log(statement(invoices, plays));
