@@ -31,11 +31,6 @@ function statement(invoice, plays) {
   let totalAmount = 0;
   let volumeCredits = 0;
   let result = `청구 내역 (고객명: ${invoice[0].customer})\n`;
-  const format = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-    minimumFractionDigits: 2,
-  }).format;
 
   for (let perf of invoice[0].performances) {
     volumeCredits += volumeCreditsFor(perf);
@@ -85,6 +80,15 @@ function volumeCreditsFor(aPerformance) {
   if ("comedy" === playFor(aPerformance).type)
     volumeCredits += Math.floor(aPerformance.audience / 5);
   return volumeCredits;
+}
+
+// statement 함수 내부에 있던 format 함수 변수를 일반 함수로 변경
+function format(aNumber) {
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    minimumFractionDigits: 2,
+  }).format(aNumber);
 }
 
 console.log(statement(invoices, plays));
