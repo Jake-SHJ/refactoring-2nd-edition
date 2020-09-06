@@ -26,8 +26,11 @@ const invoices = [
   },
 ];
 
-// 공연료 청구서를 출력하는 함수
 function statement(invoice, plays) {
+  return renderPlainText(invoice, plays);
+}
+
+function renderPlainText(invoice, plays) {
   let result = `청구 내역 (고객명: ${invoice[0].customer})\n`;
   for (let perf of invoice[0].performances) {
     result += `${playFor(perf).name}: ${usd(amountFor(perf))} (${
