@@ -30,7 +30,7 @@ class PerformanceCalculator {
   get volumeCredits() {
     let volumeCredits = 0;
     volumeCredits += Math.max(this.performance.audience - 30, 0);
-    if ("comedy" === this.performance.play.type)
+    if ("comedy" === this.play.type)
       volumeCredits += Math.floor(this.performance.audience / 5);
     return volumeCredits;
   }
@@ -52,17 +52,12 @@ exports.createStatementData = function createStatementData(invoice, plays) {
     const result = Object.assign({}, aPerformance); // 얕은 복사 수행
     result.play = calculator.play;
     result.amount = calculator.amount;
-    result.volumeCredits = volumeCreditsFor(result);
+    result.volumeCredits = calculator.volumeCredits;
     return result;
   }
 
   function playFor(aPerformance) {
     return plays[aPerformance.playID];
-  }
-
-  function volumeCreditsFor(aPerformance) {
-    return new PerformanceCalculator(aPerformance, playFor(aPerformance))
-      .volumeCredits;
   }
 
   function totalAmount(data) {
