@@ -37,71 +37,65 @@ function statement(invoice, plays) {
   result += `총액: ${usd(totalAmount())}\n`;
   result += `적립 포인트: ${totalVolumeCredits()}점\n`;
   return result;
-}
 
-// statement 함수 내부에 있던 switch문을 별개의 함수로 추출 (함수 추출하기)
-function amountFor(aPerformance) {
-  let result = 0;
-
-  switch (playFor(aPerformance).type) {
-    case "tragedy":
-      result = 40000;
-      if (aPerformance.audience > 30) {
-        result += 1000 * (aPerformance.audience - 30);
-      }
-      break;
-    case "comedy":
-      result = 30000;
-      if (aPerformance.audience > 20) {
-        result += 10000 + 500 * (aPerformance.audience - 20);
-      }
-      result += 300 * aPerformance.audience;
-      break;
-    default:
-      throw new Error(`알 수 없는 장르: ${playFor(aPerformance).type}`);
+  function totalAmount() {
+    let result = 0;
+    for (let perf of invoices[0].performances) {
+      result += amountFor(perf);
+    }
+    return result;
   }
-  return result;
-}
 
-// play 변수를 제거한다 (임시 변수를 질의 함수로 바꾸기)
-function playFor(aPerformance) {
-  return plays[aPerformance.playID];
-}
-
-// statement 함수 내부에 있던 volumeCredit 관련 로직을 별개의 함수로 추출 (함수 추출하기)
-function volumeCreditsFor(aPerformance) {
-  let volumeCredits = 0;
-  volumeCredits += Math.max(aPerformance.audience - 30, 0);
-  if ("comedy" === playFor(aPerformance).type)
-    volumeCredits += Math.floor(aPerformance.audience / 5);
-  return volumeCredits;
-}
-
-// statement 함수 내부에 있던 format 함수 변수를 일반 함수로 변경
-function usd(aNumber) {
-  return new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-    minimumFractionDigits: 2,
-  }).format(aNumber / 100);
-}
-
-// volumeCredits 값 누적 코드를 함수로 추출
-function totalVolumeCredits() {
-  let result = 0;
-  for (let perf of invoices[0].performances) {
-    result += volumeCreditsFor(perf);
+  function totalVolumeCredits() {
+    let result = 0;
+    for (let perf of invoices[0].performances) {
+      result += volumeCreditsFor(perf);
+    }
+    return result;
   }
-  return result;
-}
 
-// totalAmount도 추출, 같은 이름의 변수가 있으므로 임의의 함수 이름 부여
-function totalAmount() {
-  let result = 0;
-  for (let perf of invoices[0].performances) {
-    result += amountFor(perf);
+  function usd(aNumber) {
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+      minimumFractionDigits: 2,
+    }).format(aNumber / 100);
   }
-  return result;
+
+  function volumeCreditsFor(aPerformance) {
+    let volumeCredits = 0;
+    volumeCredits += Math.max(aPerformance.audience - 30, 0);
+    if ("comedy" === playFor(aPerformance).type)
+      volumeCredits += Math.floor(aPerformance.audience / 5);
+    return volumeCredits;
+  }
+
+  function playFor(aPerformance) {
+    return plays[aPerformance.playID];
+  }
+
+  function amountFor(aPerformance) {
+    let result = 0;
+
+    switch (playFor(aPerformance).type) {
+      case "tragedy":
+        result = 40000;
+        if (aPerformance.audience > 30) {
+          result += 1000 * (aPerformance.audience - 30);
+        }
+        break;
+      case "comedy":
+        result = 30000;
+        if (aPerformance.audience > 20) {
+          result += 10000 + 500 * (aPerformance.audience - 20);
+        }
+        result += 300 * aPerformance.audience;
+        break;
+      default:
+        throw new Error(`알 수 없는 장르: ${playFor(aPerformance).type}`);
+    }
+    return result;
+  }
 }
 
 console.log(statement(invoices, plays));
