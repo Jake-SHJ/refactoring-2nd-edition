@@ -29,8 +29,13 @@ const invoices = [
 function statement(invoice, plays) {
   const statementData = {};
   statementData.customer = invoice[0].customer;
-  statementData.performances = invoice[0].performances;
+  statementData.performances = invoice[0].performances.map(enrichPerformance);
   return renderPlainText(statementData, plays);
+
+  function enrichPerformance(aPerformance) {
+    const result = Object.assign({}, aPerformance); // 얕은 복사 수행
+    return result;
+  }
 }
 
 function renderPlainText(data, plays) {
