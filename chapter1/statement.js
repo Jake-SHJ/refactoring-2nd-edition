@@ -29,12 +29,13 @@ const invoices = [
 function statement(invoice, plays) {
   const statementData = {};
   statementData.customer = invoice[0].customer;
-  return renderPlainText(statementData, invoice, plays);
+  statementData.performances = invoice[0].performances;
+  return renderPlainText(statementData, plays);
 }
 
-function renderPlainText(data, invoice, plays) {
+function renderPlainText(data, plays) {
   let result = `청구 내역 (고객명: ${data.customer})\n`;
-  for (let perf of invoice[0].performances) {
+  for (let perf of data.performances) {
     result += `${playFor(perf).name}: ${usd(amountFor(perf))} (${
       perf.audience
     }석)\n`;
