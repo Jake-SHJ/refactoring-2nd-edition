@@ -12,4 +12,4 @@
 
 ## 각 챕터 정리 링크
 
-[chapter 1](chpater1/chapter1.md)
+[chapter 1](chapter1/chapter1.md)
