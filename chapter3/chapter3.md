@@ -1,1 +1,1 @@
-# chapter 3 정리
+# chapter 3 코드에서 나는 악취
