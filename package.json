@@ -1,0 +1,23 @@
+{
+  "name": "refactoring-2nd-edition",
+  "version": "1.0.0",
+  "description": "리팩터링 2판을 읽으면서 정리하는 공간",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jake-SHJ/refactoring-2nd-edition.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jake-SHJ/refactoring-2nd-edition/issues"
+  },
+  "homepage": "https://github.com/Jake-SHJ/refactoring-2nd-edition#readme",
+  "devDependencies": {
+    "mocha": "^8.1.3"
+  }
+}
