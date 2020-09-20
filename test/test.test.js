@@ -110,9 +110,7 @@ class Producer {
   }
 }
 
-describe("province", () => {
-  it("shortfall", () => {
-    const asia = new Province(sampleProvinceData());
-    assert.equal(asia.shortfall, 5);
-  });
+test("sampleProvinceData의 shortfall은 5가 나와야한다", () => {
+  const asia = new Province(sampleProvinceData());
+  expect(asia.shortfall).toBe(5);
 });

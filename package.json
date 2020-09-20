@@ -4,7 +4,7 @@
   "description": "리팩터링 2판을 읽으면서 정리하는 공간",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -18,6 +18,6 @@
   },
   "homepage": "https://github.com/Jake-SHJ/refactoring-2nd-edition#readme",
   "devDependencies": {
-    "mocha": "^8.1.3"
+    "jest": "^26.4.2"
   }
 }
