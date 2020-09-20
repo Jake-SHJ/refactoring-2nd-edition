@@ -13,7 +13,7 @@
 
 ## 테스트할 샘플 코드
 
-[Sample Code](sample.js)
+[Sample Code](sample.js)  
 [Test Code](../test/test.test.js)
 
 ## 첫 번째 테스트
