@@ -13,4 +13,4 @@
 
 ## 테스트할 샘플 코드
 
-[Test Code](test/test.js)
+[Test Code](../test/test.js)
