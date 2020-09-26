@@ -1,9 +1,7 @@
 function printOwing(invoice) {
   let outstanding = 0;
 
-  console.log("******************");
-  console.log("**** 고객 채무 ****");
-  console.log("******************");
+  printBanner();
 
   // 미해결 채무(outstanding)를 계산한다.
   for (const o of invoice.orders) {
@@ -24,8 +22,14 @@ function printOwing(invoice) {
   console.log(`마감일: ${invoice.dueDate.toLocaleDateString()}`);
 }
 
+function printBanner() {
+  console.log("******************");
+  console.log("**** 고객 채무 ****");
+  console.log("******************");
+}
+
 /**
- * 배너 출력 함수 추출
+ * 세부 사항 출력 코드를 지역 변수를 매개 변수로 받는 함수로 추출
  */
 function printOwing(invoice) {
   let outstanding = 0;
@@ -43,9 +47,7 @@ function printOwing(invoice) {
     today.getDate() + 30
   );
 
-  console.log(`고객명: ${invoice.customer}`);
-  console.log(`채무액: ${outstanding}`);
-  console.log(`마감일: ${invoice.dueDate.toLocaleDateString()}`);
+  printDetails(invoice, outstanding);
 }
 
 function printBanner() {
@@ -54,8 +56,14 @@ function printBanner() {
   console.log("******************");
 }
 
+function printDetails(invoice, outstanding) {
+  console.log(`고객명: ${invoice.customer}`);
+  console.log(`채무액: ${outstanding}`);
+  console.log(`마감일: ${invoice.dueDate.toLocaleDateString()}`);
+}
+
 /**
- * 세부 사항 출력 함수 추출
+ * 마감일 설정 코드 추출
  */
 function printOwing(invoice) {
   let outstanding = 0;
@@ -66,14 +74,8 @@ function printOwing(invoice) {
     outstanding += o.amount;
   }
 
-  const today = Clock.today;
-  invoice.dueDate = new Date(
-    today.getFullYear(),
-    today.getMonth(),
-    today.getDate() + 30
-  );
-
-  printDetails();
+  recordDueDate(invoice);
+  printDetails(invoice, outstanding);
 }
 
 function printBanner() {
@@ -82,8 +84,17 @@ function printBanner() {
   console.log("******************");
 }
 
-function printDetails() {
+function printDetails(invoice, outstanding) {
   console.log(`고객명: ${invoice.customer}`);
   console.log(`채무액: ${outstanding}`);
   console.log(`마감일: ${invoice.dueDate.toLocaleDateString()}`);
+}
+
+function recordDueDate(invoice) {
+  const today = Clock.today;
+  invoice.dueDate = new Date(
+    today.getFullYear(),
+    today.getMonth(),
+    today.getDate() + 30
+  );
 }
