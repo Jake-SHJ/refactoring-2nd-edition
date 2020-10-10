@@ -76,3 +76,26 @@ function readingsOutsideRange(station, range) {
 }
 
 alert = readingsOutsideRange(station, range);
+
+/**
+ * + 온도 허용 범위 로직 변경
+ */
+function readingsOutsideRange(station, range) {
+  return station.readings.filter((r) => !range.contains(r.temp));
+}
+
+class NumberRange {
+  constructor(min, max) {
+    this._data = { min: min, max: max };
+  }
+  get min() {
+    return this._data.min;
+  }
+  get max() {
+    return this._data.max;
+  }
+
+  contains(arg) {
+    return arg >= this._data.min && arg <= this._data.max;
+  }
+}
