@@ -6,7 +6,7 @@ result += `<h1>${organization.name}</h1>`; // 읽기 예
 organization.name = newName; // 쓰기 예
 
 /**
- * 상수 캡슐화
+ * 상수 캡슐화(변수 캡슐화)
  */
 function getRawDataOfOrganization() {
   return organization;
