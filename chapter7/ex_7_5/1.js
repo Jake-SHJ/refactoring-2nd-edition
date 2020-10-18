@@ -261,29 +261,31 @@ class Person {
  * 포맷 출력 역할도 전화번호 클래스에 맡기기
  */
 class TelephoneNumber {
+  constructor(data) {
+    this._areaCode = data.areaCode;
+    this._number = data.number;
+  }
   get AreaCode() {
-    return this._AreaCode;
+    return this._areaCode;
   }
   set AreaCode(arg) {
-    this._AreaCode = arg;
+    this._areaCode = arg;
   }
   get Number() {
-    return this._Number;
+    return this._number;
   }
   set Number(arg) {
-    this._Number = arg;
+    this._number = arg;
   }
   toString() {
-    return `(${this.AreaCode}) ${this.Number}`;
+    return `(${this.areaCode}) ${this.number}`;
   }
 }
 
 class Person {
   constructor(data) {
     this._name = data.name;
-    this._officeAreaCode = data.officeAreaCode;
-    this._officeNumber = data.officeNumber;
-    this._telephoneNumber = new TelephoneNumber();
+    this._telephoneNumber = new TelephoneNumber(data);
   }
 
   get name() {
@@ -296,15 +298,15 @@ class Person {
     return this._telephoneNumber.toString();
   }
   get officeAreaCode() {
-    return this._telephoneNumber.AreaCode;
+    return this._telephoneNumber.areaCode;
   }
   set officeAreaCode(arg) {
-    this._telephoneNumber.AreaCode = arg;
+    this._telephoneNumber.areaCode = arg;
   }
   get officeNumber() {
-    return this._telephoneNumber.Number;
+    return this._telephoneNumber.number;
   }
   set officeNumber(arg) {
-    this._telephoneNumber.Number = arg;
+    this._telephoneNumber.number = arg;
   }
 }
