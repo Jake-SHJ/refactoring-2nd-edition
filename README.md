@@ -17,4 +17,5 @@
 [chapter 3](chapter3/chapter3.md)  
 [chapter 4](chapter4/chapter4.md)  
 [chapter 6](chapter6/chapter6.md)  
-[chapter 7](chapter7/chapter7.md)
+[chapter 7](chapter7/chapter7.md)  
+[chapter 8](chapter8/chapter8.md)
