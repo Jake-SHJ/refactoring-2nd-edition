@@ -71,7 +71,7 @@
 
 3. 예시
 
-   -[예시](ex_8_3/1.js)
+   - [예시](ex_8_3/1.js)
 
 ## 문장을 호출한 곳으로 옮기기 \_ Move Statements to Callers
 
